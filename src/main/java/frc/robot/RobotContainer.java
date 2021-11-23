@@ -7,10 +7,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.LiftUp;
+import frc.robot.commands.driveStraight;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Lifter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
+import static frc.robot.Constants.JOYSTICK.*;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -26,8 +31,12 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-  private final Drivebase driveBase = new Drivebase();
+  private final Drivebase DRIVEBASE = new Drivebase();
 
+  private final Lifter LIFTER = new Lifter();
+
+  Command driveStraight = new driveStraight(DRIVEBASE , 0.8);
+  Command LiftUp = new LiftUp(LIFTER, 0.5);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -40,7 +49,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    new JoystickButton(stick, X).whenActive(driveStraight);
+    new JoystickButton(stick ,Y).whenActive(LiftUp);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
