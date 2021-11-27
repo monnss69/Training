@@ -8,18 +8,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import static frc.robot.Constants.SUBSYSTEM.*;
 
-public class Sucker extends SubsystemBase {
-  public WPI_TalonSRX Sucker = new WPI_TalonSRX(SUCKER_ID);
-  /** Creates a new Sucker. */
-  public Sucker(){}
+public class Opener extends SubsystemBase {
+  /** Creates a new Opener. */
+  public WPI_TalonSRX Opener = new WPI_TalonSRX(OPENER_ID);
 
-  public void suck (double speed){
-    // speed > 0 thi suck hut ra ngoai ( ban ) , < 0 thi hut vao trong
-    Sucker.set(speed);
+  public Opener() {}
+
+  public void Open(double speed){
+    Opener.set(speed);
   }
 
-  public void release(){
-    Sucker.set(0);
+  public void Close(){
+    Opener.set(0);
   }
 
   @Override

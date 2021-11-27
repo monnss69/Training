@@ -20,6 +20,8 @@ public final class Constants {
         public static final int LEFTFOLLOW_ID = 4;
         public static final int SUCKER_ID = 5;
         public static final int LIFTER_ID = 6;
+        public static final int SHOOTER_ID = 7;
+        public static final int OPENER_ID = 8;
 }
     public static final class JOYSTICK{
         public static final int X = 2;

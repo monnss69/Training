@@ -5,16 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Opener;
 
-public class driveStraight extends CommandBase {
-  private Drivebase m_drivebase;
+public class Open extends CommandBase {
+  /** Creates a new Open. */
+  private Opener m_opener;
   public double v;
-  /** Creates a new driveStraight. */
-  public driveStraight(Drivebase drivebase , double Speed){
-    m_drivebase = drivebase;
-    v = Speed;
-    addRequirements(m_drivebase);
+  public Open(Opener opener , double speed) {
+    m_opener = opener;
+    v = speed;
+    addRequirements(m_opener);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -24,13 +25,13 @@ public class driveStraight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivebase.drive(v, v);
+    m_opener.Open(v);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_drivebase.stop();
+    m_opener.Close();
   }
 
   // Returns true when the command should end.

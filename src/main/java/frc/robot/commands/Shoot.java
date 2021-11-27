@@ -5,16 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Shooter;
 
-public class driveStraight extends CommandBase {
-  private Drivebase m_drivebase;
+public class Shoot extends CommandBase {
+  /** Creates a new Shoot. */
+  private Shooter m_shooter;
   public double v;
-  /** Creates a new driveStraight. */
-  public driveStraight(Drivebase drivebase , double Speed){
-    m_drivebase = drivebase;
-    v = Speed;
-    addRequirements(m_drivebase);
+  public Shoot(Shooter shooter , double speed) {
+    m_shooter = shooter;
+    v = speed;
+    addRequirements(m_shooter);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -24,13 +25,13 @@ public class driveStraight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivebase.drive(v, v);
+    m_shooter.Shoot(v);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_drivebase.stop();
+    m_shooter.StopShoot();
   }
 
   // Returns true when the command should end.
